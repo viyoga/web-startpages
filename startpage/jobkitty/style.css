@@ -64,7 +64,7 @@
 html, body {
   background: var(--color-bg);
   color: var(--color-fg);
-  font-family: "Maple Mono NF", "Fira Code";
+  font-family: "Iosevka NF", "Fira Code";
   height: 100%;
   width: 100%;
   margin: 0;
@@ -262,7 +262,7 @@ ntp-app:after,
   color: var(--color-fg);
   caret-color: var(--color-title);
   caret-shape: block;
-  font-family: "Maple Mono NF", "Fira Code";
+  font-family: "Iosevka NF", "Fira Code";
   font-size: 16px;
   padding: 9px 14px;
   width: 80%;
