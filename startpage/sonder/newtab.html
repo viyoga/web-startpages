@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonder - A startpage</title>
+  <link rel="icon" type="image/png" href="icons/icon32.png">
+  <link rel="stylesheet" href="css/noctalia-colors.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Minimal Overlay Search Bar (Triggered by / or typing) -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <fieldset class="panel search-panel">
+      <legend class="panel-legend">search</legend>
+      <div class="search-row">
+        <span class="search-prompt">λ</span>
+        <input 
+          type="text" 
+          id="searchInput" 
+          autocomplete="off" 
+          spellcheck="false"
+        >
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Main Viewport -->
+  <div class="viewport">
+    <div class="dashboard">
+
+      <!-- Row 1: Datetime + Stats -->
+      <div class="dashboard-row row-top">
+        <!-- 1. Datetime Box -->
+        <fieldset class="panel box-datetime">
+          <legend class="panel-legend">datetime</legend>
+          <div class="time-display" id="timeDisplay">00:00:00</div>
+          <div class="date-display" id="dateDisplay">sunday, january 11, 2026</div>
+        </fieldset>
+
+        <!-- 2. Stats Box -->
+        <fieldset class="panel box-stats">
+          <legend class="panel-legend">stats</legend>
+          <div class="stats-list">
+            <div class="stat-line">
+              <span class="stat-label">cpu</span>
+              <span class="stat-value" id="statCpu">--%</span>
+            </div>
+            <div class="stat-line">
+              <span class="stat-label">ram</span>
+              <span class="stat-value" id="statRam">--%</span>
+            </div>
+            <div class="stat-line">
+              <span class="stat-label">down</span>
+              <span class="stat-value" id="statDown">-- B/s</span>
+            </div>
+            <div class="stat-line">
+              <span class="stat-label">up</span>
+              <span class="stat-value" id="statUp">-- B/s</span>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Row 2: Weather + Tasks -->
+      <div class="dashboard-row row-mid">
+        <!-- 3. Weather Box -->
+        <fieldset class="panel box-weather">
+          <legend class="panel-legend">weather</legend>
+          
+          <div class="weather-current">
+            <div class="weather-temp" id="weatherTemp">23°</div>
+            <div class="weather-condition" id="weatherCondition">clear</div>
+          </div>
+
+          <div class="weather-stats">
+            <div class="stat-col">
+              <div class="stat-line">
+                <span class="stat-label">humi</span>
+                <span class="stat-value" id="statHumi">87%</span>
+              </div>
+              <div class="stat-line">
+                <span class="stat-label">prec</span>
+                <span class="stat-value" id="statPrec">1%</span>
+              </div>
+              <div class="stat-line">
+                <span class="stat-label">uv</span>
+                <span class="stat-value" id="statUv">0</span>
+              </div>
+            </div>
+            <div class="stat-col">
+              <div class="stat-line">
+                <span class="stat-label">wind</span>
+                <span class="stat-value" id="statWind">4 kmh</span>
+              </div>
+              <div class="stat-line">
+                <span class="stat-label">feel</span>
+                <span class="stat-value" id="statFeel">27°</span>
+              </div>
+              <div class="stat-line">
+                <span class="stat-label">aqi</span>
+                <span class="stat-value" id="statAqi">95</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="weather-forecast" id="weatherForecast">
+            <div class="forecast-row">
+              <span class="fc-time">00:00</span>
+              <span class="fc-temp">22°</span>
+              <span class="fc-cond">clear</span>
+            </div>
+            <div class="forecast-row">
+              <span class="fc-time">03:00</span>
+              <span class="fc-temp">21°</span>
+              <span class="fc-cond">clear</span>
+            </div>
+            <div class="forecast-row">
+              <span class="fc-time">06:00</span>
+              <span class="fc-temp">22°</span>
+              <span class="fc-cond">sunny</span>
+            </div>
+            <div class="forecast-row">
+              <span class="fc-time">09:00</span>
+              <span class="fc-temp">27°</span>
+              <span class="fc-cond">sunny</span>
+            </div>
+            <div class="forecast-row">
+              <span class="fc-time">12:00</span>
+              <span class="fc-temp">29°</span>
+              <span class="fc-cond">sunny</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 4. Tasks Box -->
+        <fieldset class="panel box-tasks">
+          <legend class="panel-legend">tasks</legend>
+          <div class="tasks-header">
+            <span class="tasks-count" id="tasksCount">0 tasks</span>
+          </div>
+
+          <div class="tasks-list" id="tasksList">
+            <!-- Dynamic task items -->
+          </div>
+
+          <form class="task-input-row" id="taskForm">
+            <span class="task-input-prompt">[+]</span>
+            <input 
+              type="text" 
+              id="taskInput" 
+              placeholder="add task... (e.g. hw02 @tmrw 11:59 pm)" 
+              autocomplete="off" 
+              spellcheck="false"
+            >
+          </form>
+        </fieldset>
+      </div>
+
+      <!-- Row 3: Links -->
+      <div class="dashboard-row row-bottom">
+        <fieldset class="panel box-links">
+          <legend class="panel-legend">links</legend>
+          <div class="links-grid" id="linksGrid">
+            <!-- Links will be rendered here with exact SVGs and hotkeys -->
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/newtab.js"></script>
+</body>
+</html>

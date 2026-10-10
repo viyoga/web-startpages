@@ -1,64 +1,90 @@
 # web-startpages
 
-A personal browser startpage, styled as a terminal window with a live clock and a `scout` search bar.
+A collection of personal browser startpages and Manifest V3 new-tab extensions, styled with frosted glass, terminal aesthetics, live clocks, and fast keyboard workflows.
 
-## Live demo
+## 🌐 Live Demos
 
-**https://viyoga.github.io/web-startpages/startpage/jobkitty/**
+- **Suite Portal:** [https://viyoga.github.io/web-startpages/](https://viyoga.github.io/web-startpages/)
+- **Jobkitty (Desktop):** [https://viyoga.github.io/web-startpages/startpage/jobkitty/](https://viyoga.github.io/web-startpages/startpage/jobkitty/)
+- **Mobile Startpage:** [https://viyoga.github.io/web-startpages/startpage/mobile/](https://viyoga.github.io/web-startpages/startpage/mobile/)
+- **Abeyant (New Tab):** [https://viyoga.github.io/web-startpages/startpage/abeyant/](https://viyoga.github.io/web-startpages/startpage/abeyant/)
+- **Sonder (New Tab):** [https://viyoga.github.io/web-startpages/startpage/sonder/](https://viyoga.github.io/web-startpages/startpage/sonder/)
+- **Mist Glass (New Tab):** [https://viyoga.github.io/web-startpages/startpage/mist-glass/](https://viyoga.github.io/web-startpages/startpage/mist-glass/)
 
-![startpage preview](startpage/jobkitty/showcase.gif)
+---
 
-## Features
+## 📦 Projects Overview
 
-- **Terminal-window chrome** — traffic-light dots and a `kabir@esoteric — tty` title bar
-- **Fall-in animation** on the `> cd ~/_` header
-- **4 bookmark categories** — dev, play, tools, media — with gradient underline hover
-- **scout search bar** — permanent gradient underline, block caret, autofocus, and bang shortcuts (`@yt`, `@rd`, `@ss`, `@brave`, `@dd`) plus raw-URL support
-- **Live clock** in the status bar
-- **Dark purple theme** that adapts colors via CSS variables
+### 1. `jobkitty` (Desktop Startpage)
+- **Terminal Chrome:** Traffic lights, `kabir@esoteric — tty` bar, and fall-in animation.
+- **Bookmarks:** Categories (`dev`, `play`, `tools`, `media`) with gradient hover sweeps.
+- **Scout Search Bar:** Permanent gradient underline, block caret, and bang search shortcuts (`@yt`, `@rd`, `@ss`, `@brave`, `@dd`).
+- **Live Clock:** Status bar clock.
 
-## Install as a new-tab page
+### 2. `mobile` (Retro Minimal Mobile Startpage)
+- **Zero-Scroll Fit:** Designed specifically for mobile browser screens.
+- **Header:** Pixel cat logo, theme toggle (5 palettes: amber, mallow, gruvbox, safelight, tungsten), and font switcher.
+- **Kitty Terminal Panel:** Day progress meter, live time, and purring status.
+- **2x2 Touch Shortcuts & Search:** Large tap targets and clean search bar.
 
-### Chrome / Edge / Brave (load unpacked)
+### 3. `abeyant` (Ambient Minimal New Tab Extension)
+- **Glassmorphism:** Frosted glass panels, cursor spotlight sheen, and spring dot canvas.
+- **Header & Search:** Pill badges, quick `λ` search bar, and side terminal widget.
+- **Customizable Shortcuts:** Stored in `chrome.storage.local`.
 
-1. Clone or download this repo
-2. Open `chrome://extensions`
-3. Enable **Developer mode**
-4. Click **Load unpacked** and select `startpage/jobkitty/`
-5. Open a new tab — you're home
+### 4. `sonder` (Terminal Dashboard Startpage Extension)
+- **System Stats Integration:** Optional live host metrics via daemon (`127.0.0.1:9191`).
+- **Keyboard Task Manager:** Add, complete, and delete tasks directly from your new tab.
+- **Hotkeys & Bangs:** Direct navigation and search overlays.
 
-The `manifest.json` uses `chrome_url_overrides.newtab` to replace the new-tab page with `index.html`.
+### 5. `mist-glass` (Glass Minimal New Tab Extension)
+- **Ambient Glow:** Subtle radial gradients and frosted surfaces.
+- **Inline Editing:** Click the pencil icon to edit or remove shortcut badges.
+- **Auto-Favicons:** Uses Chrome's built-in `_favicon` cache without third-party leaks.
 
-### Firefox
+---
 
-Use the [Firefox multi-account containers](https://support.mozilla.org/en-US/kb/containers) trick, or pin the URL as a homepage and set `browser.newtab.url` via [New Tab Override](https://addons.mozilla.org/firefox/addon/new-tab-override/).
+## 🛠️ How to Load Unpacked (Chrome / Brave / Edge)
 
-## Usage
+1. Clone or download this repository:
+   ```bash
+   git clone https://github.com/viyoga/web-startpages.git
+   ```
+2. Open `chrome://extensions` or `brave://extensions`.
+3. Enable **Developer mode** (top-right toggle).
+4. Click **Load unpacked** and choose any extension folder:
+   - `startpage/abeyant/`
+   - `startpage/sonder/`
+   - `startpage/mist-glass/`
+   - `startpage/jobkitty/`
+5. Open a new tab to see your new dashboard!
 
-- Type a URL (`https://github.com`) or a bare domain (`github.com`) and press Enter — opens in a new tab
-- Prefix a query with a bang for a targeted search:
-  - `@yt cats` → YouTube
-  - `@rd linux` → Reddit
-  - `@ss how to css` → Startpage
-  - `@brave rust` → Brave Search
-  - `@dd web dev` → DuckDuckGo
-  - plain text → Google
+---
 
-## Structure
+## 🦊 Firefox Setup
 
+- For extensions with Firefox Gecko manifests (`abeyant/`, `sonder/`), go to `about:debugging#/runtime/this-firefox` and select **Load Temporary Add-on...** on the `manifest.json`.
+- Alternatively, use [New Tab Override](https://addons.mozilla.org/firefox/addon/new-tab-override/) and set the URL to any of the live demo links above.
+
+---
+
+## 📂 Repository Structure
+
+```text
+web-startpages/
+├── .github/workflows/deploy.yml   # Automatic GitHub Pages deployment
+├── index.html                     # Suite portal hub
+├── README.md                      # Documentation
+└── startpage/
+    ├── abeyant/                   # Abeyant Manifest V3 extension
+    ├── jobkitty/                  # Jobkitty terminal startpage
+    ├── mist-glass/                # Mist Glass Manifest V3 extension
+    ├── mobile/                    # Mobile retro startpage
+    └── sonder/                    # Sonder terminal dashboard extension
 ```
-startpage/jobkitty/
-├── index.html      # page markup + search logic + clock
-├── style.css       # terminal theme (colors via CSS variables)
-├── cat.gif         # sidebar art
-├── newtab.svg      # favicon
-├── manifest.json   # chrome extension manifest
-├── showcase.gif    # animated preview used in this README
-└── startpage.gif
-```
 
-## Development
+---
 
-The styles are mirrored from a localhost startpage rendered by the [noctalia](https://github.com/anomalyco/noctalia) theme engine — edit the template there and copy the generated CSS back here. Static HTML needs no build step; `style.css` is loaded with a cache-busting `?v=Date.now()` query.
+## 🚀 Deployment
 
-Deploy: push to `main` and [GitHub Actions](.github/workflows/deploy.yml) publishes to Pages automatically.
+Pushing to `main` automatically triggers GitHub Actions to build and deploy all startpages and extensions to GitHub Pages.

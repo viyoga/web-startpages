@@ -1,0 +1,548 @@
+/* ══════════════════════════════════════════════════════════════════
+   SONDER — Minimalist Startpage
+   1:1 Pixel-faithful reproduction with Stats & Tasks
+   ══════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-mono: 'Iosevka NF', 'Iosevka Nerd Font', 'Iosevka', 'JetBrains Mono NF', 'JetBrainsMono Nerd Font', 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Theme tokens with Catppuccin / Noctalia fallbacks */
+  --c-bg: var(--bg, #181825);
+  --c-surface: var(--noctalia-surface, #1e1e2e);
+  --c-border: var(--border, #313244);
+  --c-legend: var(--noctalia-primary, #cba6f7);
+  --c-fg: var(--text-primary, #cdd6f4);
+  --c-fg-dim: var(--text-secondary, #6c7086);
+  --c-accent: var(--noctalia-primary, #cba6f7);
+  --c-accent-hover: var(--noctalia-primary-light, #f5c2e7);
+
+  --trans: 120ms ease;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Centered Main Viewport ── */
+.viewport {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.dashboard {
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Exact 25px gap between rows */
+}
+
+/* ── Dashboard Rows ── */
+.dashboard-row {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.row-top .box-datetime {
+  flex: 2.3;
+}
+
+.row-top .box-stats {
+  flex: 1;
+  min-width: 220px;
+}
+
+.row-mid .box-weather {
+  flex: 1;
+}
+
+.row-mid .box-tasks {
+  flex: 1.6;
+}
+
+.row-bottom .box-links {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .dashboard-row {
+    flex-direction: column;
+  }
+}
+
+/* ── Panel / Fieldset ── */
+.panel {
+  border: 1px solid var(--c-border);
+  border-radius: 0;
+  padding: 24px 28px;
+  background-color: transparent;
+  position: relative;
+}
+
+.panel-legend {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--c-legend);
+  padding: 0 10px;
+  margin-left: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ── 1. Datetime Box ── */
+.box-datetime {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 145px;
+}
+
+.time-display {
+  font-size: 50px;
+  font-weight: 400;
+  color: var(--c-fg);
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.date-display {
+  font-size: 14px;
+  color: var(--c-fg-dim);
+  letter-spacing: 0.3px;
+  text-transform: lowercase;
+}
+
+/* ── 2. Stats Box ── */
+.box-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 145px;
+}
+
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+}
+
+.stats-list .stat-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-list .stat-label {
+  display: inline-block;
+  width: 40px;
+  color: var(--c-fg-dim);
+  text-align: left;
+}
+
+.stats-list .stat-value {
+  color: var(--c-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 3. Weather Box ── */
+.box-weather {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+
+.weather-current {
+  margin-bottom: 22px;
+}
+
+.weather-temp {
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--c-fg);
+  line-height: 1.1;
+}
+
+.weather-condition {
+  font-size: 14px;
+  color: var(--c-fg-dim);
+  margin-top: 4px;
+  text-transform: lowercase;
+}
+
+.weather-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 22px;
+}
+
+.stat-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 116px;
+}
+
+.stat-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.stat-label {
+  display: inline-block;
+  width: 38px;
+  color: var(--c-fg-dim);
+  text-align: left;
+}
+
+.stat-value {
+  color: var(--c-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.forecast-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: 13px;
+}
+
+.fc-time {
+  width: 52px;
+  color: var(--c-fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-temp {
+  width: 64px;
+  color: var(--c-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-cond {
+  color: var(--c-fg-dim);
+  text-transform: lowercase;
+}
+
+/* ── 4. Tasks Box ── */
+.box-tasks {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+
+.tasks-header {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tasks-count {
+  font-size: 13px;
+  color: var(--c-fg-dim);
+  letter-spacing: 0.3px;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 275px;
+  padding-right: 4px;
+}
+
+.tasks-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.tasks-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tasks-list::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+}
+
+.task-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  cursor: default;
+  transition: opacity var(--trans), background-color var(--trans);
+  position: relative;
+  outline: none;
+  padding: 2px 4px;
+  margin: 0 -4px;
+}
+
+.task-row:focus-visible {
+  outline: 1px dashed var(--c-legend);
+  outline-offset: 1px;
+  background-color: color-mix(in srgb, var(--c-legend) 8%, transparent);
+}
+
+.task-row:focus-visible .task-check {
+  color: var(--c-legend);
+}
+
+.task-row:focus-visible .task-del {
+  opacity: 0.6;
+}
+
+.task-row:hover .task-del {
+  opacity: 1;
+}
+
+.task-check {
+  color: var(--c-fg-dim);
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  font-family: inherit;
+  transition: color var(--trans);
+  font-variant-numeric: tabular-nums;
+}
+
+.task-check:hover {
+  color: var(--c-legend);
+}
+
+.task-text {
+  flex: 1;
+  color: var(--c-fg);
+  word-break: break-word;
+  transition: color var(--trans), opacity var(--trans);
+}
+
+.task-due {
+  color: var(--c-fg-dim);
+  font-size: 12px;
+  margin-left: auto;
+  text-align: right;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-del {
+  opacity: 0;
+  color: var(--c-fg-dim);
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 4px;
+  margin-left: 4px;
+  transition: color var(--trans), opacity var(--trans);
+}
+
+.task-del:hover {
+  color: #f38ba8;
+}
+
+.task-row.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+.task-row.completed .task-check {
+  color: var(--c-legend);
+}
+
+.task-row.completed .task-due {
+  opacity: 0.35;
+}
+
+.task-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  border-top: 1px dashed var(--c-border);
+  padding-top: 12px;
+}
+
+.task-input-prompt {
+  color: var(--c-legend);
+  font-size: 13px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.task-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--c-fg);
+  font-family: inherit;
+  font-size: 13px;
+  caret-color: var(--c-legend);
+}
+
+.task-input-row input::placeholder {
+  color: color-mix(in srgb, var(--c-fg-dim) 65%, transparent);
+}
+
+/* ── 5. Links Box ── */
+.box-links {
+  min-height: 98px;
+  display: flex;
+  align-items: center;
+  padding: 24px 28px;
+}
+
+.links-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 14px;
+  column-gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--c-fg-dim);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--trans);
+}
+
+.link-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  flex-shrink: 0;
+  transition: color var(--trans);
+}
+
+.link-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  display: block;
+}
+
+.link-key-tag {
+  color: inherit;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  transition: color var(--trans);
+}
+
+.link-name {
+  color: inherit;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  transition: color var(--trans);
+}
+
+.link-item:hover,
+.link-item:hover .link-icon,
+.link-item:hover .link-key-tag,
+.link-item:hover .link-name {
+  color: var(--c-legend);
+}
+
+/* ── Minimal Search Overlay (Opens on / or Typing) ── */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: color-mix(in srgb, var(--c-bg) 75%, transparent);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.search-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-panel {
+  width: 100%;
+  max-width: 580px;
+  background-color: var(--c-bg);
+  border: 1px solid var(--c-border);
+  padding: 16px 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-prompt {
+  color: var(--c-legend);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.search-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--c-fg);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  caret-color: var(--c-legend);
+}

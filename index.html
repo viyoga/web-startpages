@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startpages &amp; New Tab Extensions — viyoga</title>
+  <link rel="icon" type="image/svg+xml" href="startpage/mobile/favicon.svg">
+  <style>
+    :root {
+      --bg: #0B0906;
+      --bg-panel: #16120D;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(255, 180, 84, 0.45);
+      --fg: #E8EAEF;
+      --fg-dim: #9E9783;
+      --fg-muted: #667858;
+      --accent: #FFB454;
+      --accent-soft: #D9A78B;
+      --glass-bg: rgba(25, 20, 15, 0.65);
+      --glass-blur: 16px;
+      --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      --font-mono: "Space Mono", "Maple Mono NF", "Iosevka NF", monospace;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-mono);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 180, 84, 0.08) 0%, transparent 60%),
+        radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 100% 100%, 24px 24px;
+      padding: 32px 20px;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--fg);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .brand .sym {
+      color: var(--accent);
+    }
+    .home-link {
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+      text-decoration: none;
+      padding: 5px 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(var(--glass-blur));
+      transition: all 0.15s ease;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .home-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .intro {
+      margin-bottom: 36px;
+    }
+    .intro h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .intro p {
+      font-size: 0.85rem;
+      color: var(--fg-dim);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 180, 84, 0.15);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--fg);
+      letter-spacing: -0.01em;
+      transition: color 0.15s ease;
+    }
+    .card:hover .card-title {
+      color: var(--accent);
+    }
+    .card-kicker {
+      font-size: 0.6875rem;
+      color: var(--accent-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--fg-dim);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--fg-muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+    }
+    .card-arrow {
+      color: var(--accent);
+      transition: transform 0.15s ease;
+    }
+    .card:hover .card-arrow {
+      transform: translateX(4px);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+    }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .home-link { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="https://viyoga.github.io" class="brand">
+        <span class="sym">~</span>viyoga // startpages
+      </a>
+      <a href="https://viyoga.github.io" class="home-link">← viyoga.github.io</a>
+    </header>
+
+    <div class="intro">
+      <h1>Startpages &amp; New Tab Extensions</h1>
+      <p>Personal browser startpages and Manifest V3 new-tab extensions — styled with frosted glass, terminal chrome, live clocks, and fast search shortcuts.</p>
+    </div>
+
+    <div class="section-title">Browser Startpages</div>
+    <div class="grid">
+      <a href="./startpage/jobkitty/" class="card">
+        <div class="card-top">
+          <div class="card-title">Jobkitty</div>
+          <div class="card-kicker">Desktop</div>
+        </div>
+        <div class="card-desc">Retro terminal window startpage with traffic-light dots, categorized bookmarks, scout search bar with bangs (@yt, @rd, @ss), and live clock.</div>
+        <div class="card-footer">
+          <span>startpage/jobkitty/</span>
+          <span class="card-arrow">launch →</span>
+        </div>
+      </a>
+
+      <a href="./startpage/mobile/" class="card">
+        <div class="card-top">
+          <div class="card-title">Mobile</div>
+          <div class="card-kicker">Mobile Web</div>
+        </div>
+        <div class="card-desc">Zero-scroll minimal mobile startpage. Geometric cat, day progress meter, 2x2 touch shortcuts, theme/font switcher, and interactive dot grid.</div>
+        <div class="card-footer">
+          <span>startpage/mobile/</span>
+          <span class="card-arrow">launch →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="section-title">New Tab Extensions (Manifest V3)</div>
+    <div class="grid">
+      <a href="./startpage/abeyant/" class="card">
+        <div class="card-top">
+          <div class="card-title">Abeyant</div>
+          <div class="card-kicker">Extension</div>
+        </div>
+        <div class="card-desc">Ambient new tab with frosted glass panels, interactive cursor sheen, live terminal info widget, customizable shortcut pills, and quick search.</div>
+        <div class="card-footer">
+          <span>startpage/abeyant/</span>
+          <span class="card-arrow">launch →</span>
+        </div>
+      </a>
+
+      <a href="./startpage/sonder/" class="card">
+        <div class="card-top">
+          <div class="card-title">Sonder</div>
+          <div class="card-kicker">Extension</div>
+        </div>
+        <div class="card-desc">Retro terminal dashboard startpage with system stats daemon integration (127.0.0.1:9191), keyboard-driven task manager, hotkeys, and search bangs.</div>
+        <div class="card-footer">
+          <span>startpage/sonder/</span>
+          <span class="card-arrow">launch →</span>
+        </div>
+      </a>
+
+      <a href="./startpage/mist-glass/" class="card">
+        <div class="card-top">
+          <div class="card-title">Mist Glass</div>
+          <div class="card-kicker">Extension</div>
+        </div>
+        <div class="card-desc">Frosted glass minimal new tab page with ambient glow, grouped shortcut pills, inline edit mode, auto-favicons, and clean clock header.</div>
+        <div class="card-footer">
+          <span>startpage/mist-glass/</span>
+          <span class="card-arrow">launch →</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <a href="https://github.com/viyoga/web-startpages">(&gt;.&lt;) viyoga/web-startpages on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

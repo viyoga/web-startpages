@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>startpage</title>
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0B0406">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+
+  <script>(function(){var t;try{var p=new URLSearchParams(window.location.search).get('theme');t=p||localStorage.getItem('theme')}catch(e){}if(t==='gruvbox'||t==='slick')t='gruvbox-material';var v=['amber','mallow','gruvbox-material','safelight','tungsten'];var def='safelight';if(v.indexOf(t)<0)t=def;document.documentElement.setAttribute('data-theme',t);var f;try{var pf=new URLSearchParams(window.location.search).get('font');f=pf||localStorage.getItem('font')}catch(e){}var fv=['maple','iosevka','space'];if(fv.indexOf(f)<0)f='space';document.documentElement.setAttribute('data-font',f);})();</script>
+  <link rel="preload" href="fonts/SpaceMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/SpaceMono-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/MapleMono-NF-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/MapleMono-NF-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=14">
+</head>
+<body>
+  <!-- Interactive Spring Dot Grid Canvas -->
+  <canvas id="grid-canvas"></canvas>
+
+  <main class="container">
+    <!-- Top Header matching viyoga topbar -->
+    <header class="brand">
+      <a href="https://viyoga.github.io" class="logo" title="viyoga">
+        <div class="site-cat" aria-hidden="true">
+          <div class="cat-logo">
+            <i class="cat-tail"></i>
+            <i class="cat-body"></i>
+            <i class="cat-paw cat-paw-one"></i>
+            <i class="cat-paw cat-paw-two"></i>
+            <i class="cat-head"></i>
+            <i class="cat-ear cat-ear-left"></i>
+            <i class="cat-ear cat-ear-right"></i>
+            <i class="cat-face"></i>
+            <i class="cat-nose"></i>
+            <i class="cat-whiskers"></i>
+          </div>
+        </div>
+        <span class="logo-text"><span class="logo-sym">~</span>viyoga</span>
+      </a>
+
+      <div class="nav-controls">
+        <div class="theme-pick">
+          <button class="theme-btn" id="fontBtn" type="button" aria-label="Font" title="Font">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></svg>
+          </button>
+        </div>
+        <div class="theme-pick">
+          <button class="theme-btn" id="themeBtn" type="button" aria-label="Theme" title="Theme">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Centered Content -->
+    <div class="main-stack">
+      <!-- Retro 3D Offset Kitty Window -->
+      <aside class="signal-shell" aria-label="Terminal Cat Window">
+        <div class="signal-panel">
+          <div class="panel-head">
+            <span>viyoga@kitty</span>
+            <div class="panel-lights">
+              <i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="panel-rule"></div>
+
+          <!-- Sleeping Geometric Kitty -->
+          <div class="cat-wrap">
+            <div class="cat-logo" id="catLogo" aria-hidden="true" title="Pet the kitty!">
+              <i class="cat-tail"></i>
+              <i class="cat-body"></i>
+              <i class="cat-paw cat-paw-one"></i>
+              <i class="cat-paw cat-paw-two"></i>
+              <i class="cat-head"></i>
+              <i class="cat-ear cat-ear-left"></i>
+              <i class="cat-ear cat-ear-right"></i>
+              <i class="cat-face"></i>
+              <i class="cat-nose"></i>
+              <i class="cat-whiskers"></i>
+              <b class="cat-z cat-z-one">Z</b>
+              <b class="cat-z cat-z-two">Z</b>
+              <b class="cat-z cat-z-three">Z</b>
+              <b class="cat-z cat-z-four">Z</b>
+            </div>
+          </div>
+
+          <!-- Time of Day Passing Progress -->
+          <div class="signal-copy" id="meterLabel">DAY PROGRESS</div>
+          <div class="meter" id="timeMeter" aria-label="Day Progress">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+
+          <!-- Retro Dashed Rule & Meta Status -->
+          <div class="panel-divider"></div>
+          <div class="panel-meta"><span>TIME</span><b id="kittyTime">00:00</b></div>
+          <div class="panel-meta"><span>STATE</span><b id="kittyState">PURRING</b></div>
+        </div>
+      </aside>
+
+      <!-- Launcher Group: Shortcuts & Lifted Search Bar -->
+      <div class="launcher-group">
+        <!-- 4 Minimal Shortcuts (2x2 Grid) -->
+        <nav class="shortcuts" aria-label="Shortcuts">
+          <a class="shortcut" href="https://x.com">
+            <div class="shortcut-left">
+              <span class="shortcut-num">01</span>
+              <span class="shortcut-name">twitter</span>
+            </div>
+            <span class="shortcut-arrow">→</span>
+          </a>
+
+          <a class="shortcut" href="https://github.com">
+            <div class="shortcut-left">
+              <span class="shortcut-num">02</span>
+              <span class="shortcut-name">github</span>
+            </div>
+            <span class="shortcut-arrow">→</span>
+          </a>
+
+          <a class="shortcut" href="https://viyoga.github.io">
+            <div class="shortcut-left">
+              <span class="shortcut-num">03</span>
+              <span class="shortcut-name">viyoga</span>
+            </div>
+            <span class="shortcut-arrow">→</span>
+          </a>
+
+          <a class="shortcut" href="https://fmhy.net">
+            <div class="shortcut-left">
+              <span class="shortcut-num">04</span>
+              <span class="shortcut-name">fmhy</span>
+            </div>
+            <span class="shortcut-arrow">→</span>
+          </a>
+        </nav>
+
+        <!-- Search Bar (Grouped directly below shortcuts) -->
+        <form class="search-form" id="searchForm" autocomplete="off">
+          <span class="search-prompt">λ</span>
+          <input 
+            type="text" 
+            class="search-input" 
+            id="searchInput" 
+            placeholder="search or enter url..." 
+            autocapitalize="none" 
+            autocorrect="off" 
+            spellcheck="false"
+            autofocus
+            enterkeyhint="go"
+          >
+          <button type="button" class="search-clear" id="searchClear" aria-label="Clear">×</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="grid.js?v=8"></script>
+  <script src="app.js?v=9"></script>
+</body>
+</html>

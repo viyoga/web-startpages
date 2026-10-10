@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Sonder - A startpage",
+  "short_name": "Sonder",
+  "version": "1.0.0",
+  "description": "Minimalist startpage with datetime, live weather, hotkey links, and fast search bangs.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sonder-newtab@local.ext"
+    }
+  }
+}
